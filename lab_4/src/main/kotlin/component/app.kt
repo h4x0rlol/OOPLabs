@@ -24,21 +24,6 @@ class App : RComponent<AppProps, AppState>() {
         //console.log("componentwillmount")
     }
 
-    override fun componentWillUpdate(nextProps: AppProps, nextState: AppState) {
-        if (!nextState.lessons.contentEquals(state.lessons)) {
-            setState {
-                state.lessons = nextState.lessons
-                state.presents = Array(nextState.lessons.size) {
-                    Array(props.students.size) { false }
-                }
-//                console.log("AAAAAAAAAAAAA")
-//                console.log(state.presents)
-//                console.log(state.lessons)
-            }
-        }
-    }
-
-
     override fun RBuilder.render() {
         h1 { +"App" }
         addlesson(lessonsList, addFunc())
@@ -60,9 +45,9 @@ class App : RComponent<AppProps, AppState>() {
         { _: Event ->
             setState {
                 lessons += Lesson(newLesson)
-                presents = Array(lessons.size) {
-                    Array(props.students.size) { false }
-                }
+                presents += arrayOf(
+                    Array(props.students.size) { false })
+
             }
         }
     }
