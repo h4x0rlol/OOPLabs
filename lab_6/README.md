@@ -1,12 +1,8 @@
 #### Программа после запуска
-![](https://sun4-10.userapi.com/-ChtWFDhkLLjqoErjiHlbdQe_K2JSNPT14pTRg/AoJ-kRgaDpc.jpg)
-#### Переход на studentsEdit
-![](https://sun4-17.userapi.com/Oo4M0X8cyp8iK_llaFmVdEepvNFwJeYNAz3Rtw/5JeAONrUNRA.jpg)
-#### Изменение некоторых полей
-![](https://sun4-10.userapi.com/oWeuiXVBFQgVSBb4x9eTI5THgZqbXlhL-jUjzQ/uxMwjmBWdmo.jpg)
-#### Переход на lessonsEdit и изменение некоторых полей
-![](https://sun4-11.userapi.com/3ZzrJPbgb0UzwxrpLLihwnfKpcE7anopy7tHpQ/VBabsaj829M.jpg)
-#### Переход на Students
-![](https://sun4-16.userapi.com/tDKyYiwCJjqrJYkAr_0itROg8lzotTjrKdsKTg/8MVXyAWhlmI.jpg)
-##### Переход на Lessons
-![](https://sun4-15.userapi.com/L6lN4d44HTr758NvIx3Pvl5e_kF40Yzh7LMJiQ/ytZdLQSwR_I.jpg)
+![](https://sun4-16.userapi.com/Jl1p28D4zjsq_KrX2STS5Kn_LAlpurvvMLdcdA/3RPU5sJycgY.jpg)
+#### Переход на studentsEdit и добавление нового студента
+![](https://sun4-15.userapi.com/cMNCxVpOtQWtUzMiRNTk3L4SiBE9jATYU_80vg/u9w_b9Iem28.jpg)
+#### Переход на lessonsEdit и добавление нового предмета
+![](https://sun4-15.userapi.com/Ai50Ap1EblLKhsnOYls-GxlyCv8eWKoqm9Etag/6V8QOTw5IvU.jpg)
+#### Переход на новый предмет и отметка 3-го студента
+![](https://sun4-17.userapi.com/0FUYvPtnb-yKvTtyd7dOEhajZ8E4r3iEhiWGpQ/Rk_0ceFCVdo.jpg)
