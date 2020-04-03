@@ -12,12 +12,12 @@ interface anyEditProps<S> : RProps {
     var subobjs: Array<S>
     var name: String
     var path: String
-
+    var addFunc: (String) -> Unit
 }
 
 
 fun <S> fAnyEdit(
-    rEdit: RBuilder.() -> ReactElement,
+    rEdit: RBuilder.(Array<S>,(String) -> Unit) -> ReactElement,
     rComponent: RBuilder.(Array<S>, String, String) -> ReactElement
 ) =
     functionalComponent<anyEditProps<S>> {
@@ -25,17 +25,18 @@ fun <S> fAnyEdit(
             h2("header") {
                 +"Edit page"
             }
-            rEdit()
+            rEdit(it.subobjs,it.addFunc)
             rComponent(it.subobjs, it.name, it.path)
         }
     }
 
 fun <S> RBuilder.anyEdit(
-    rEdit: RBuilder.() -> ReactElement,
+    rEdit: RBuilder.(Array<S>,(String) -> Unit) -> ReactElement,
     rComponent: RBuilder.(Array<S>, String, String) -> ReactElement,
     subobjs: Array<S>,
     name: String,
-    path: String
+    path: String,
+    addFunc: (String) -> Unit
 ) = child(
     withDisplayName("Edit", fAnyEdit<S>(rEdit, rComponent))
 ) {
@@ -43,5 +44,5 @@ fun <S> RBuilder.anyEdit(
     attrs.subobjs = subobjs
     attrs.name = name
     attrs.path = path
-
+    attrs.addFunc = addFunc
 }

@@ -9,12 +9,14 @@ import react.router.dom.*
 import kotlin.reflect.KClass
 
 interface AppProps : RProps {
-    var lessons: Array<Lesson>
-    var students: Array<Student>
+    //var lessons: Array<Lesson>
+    //var students: Array<Student>
 }
 
 interface AppState : RState {
     var presents: Array<Array<Boolean>>
+    var lessons: Array<Lesson>
+    var students: Array<Student>
 }
 
 interface RouteNumberResult : RProps {
@@ -23,8 +25,10 @@ interface RouteNumberResult : RProps {
 
 class App : RComponent<AppProps, AppState>() {
     override fun componentWillMount() {
-        state.presents = Array(props.lessons.size) {
-            Array(props.students.size) { false }
+        state.lessons = lessonsList
+        state.students = studentList
+        state.presents = Array(state.lessons.size) {
+            Array(state.students.size) { false }
         }
 
     }
@@ -36,8 +40,8 @@ class App : RComponent<AppProps, AppState>() {
                 ul {
                     li { navLink("/lessons") { +"Lessons" } }
                     li { navLink("/students") { +"Students" } }
-                    li { navLink("/studentsEdit"){+"studentsEdit"} }
-                    li { navLink("/lessonsEdit") {+"lessonsEdit"} }
+                    li { navLink("/studentsEdit") { +"studentsEdit" } }
+                    li { navLink("/lessonsEdit") { +"lessonsEdit" } }
                 }
             }
         }
@@ -45,36 +49,50 @@ class App : RComponent<AppProps, AppState>() {
             route("/lessonsEdit",
                 exact = true,
                 render = {
-                    anyEdit(RBuilder::lessonsedit,RBuilder::anyList,props.lessons,"Edited List","/lessons")
+                    anyEdit(
+                        RBuilder::addLesson,
+                        RBuilder::anyList,
+                        state.lessons,
+                        "Edited List",
+                        "/lessons",
+                        addLesson()
+                    )
                 }
             )
             route("/studentsEdit",
                 exact = true,
                 render = {
-                    anyEdit(RBuilder::studentsEdit,RBuilder::anyList,props.students,"Edited List","/students")
+                    anyEdit(
+                        RBuilder::addStudent,
+                        RBuilder::anyList,
+                        state.students,
+                        "Edited list",
+                        "/students",
+                        addStudent()
+                    )
                 }
             )
             route("/lessons",
                 exact = true,
                 render = {
-                    anyList(props.lessons, "Lessons", "/lessons")
+                    anyList(state.lessons, "Lessons", "/lessons")
                 }
             )
             route("/students",
                 exact = true,
                 render = {
-                    anyList(props.students, "Students", "/students")
+                    anyList(state.students, "Students", "/students")
                 }
             )
             route("/lessons/:number",
                 render = { route_props: RouteResultProps<RouteNumberResult> ->
                     val num = route_props.match.params.number.toIntOrNull() ?: -1
-                    val lesson = props.lessons.getOrNull(num)
+                    val lesson = state.lessons.getOrNull(num)
                     if (lesson != null)
                         anyFull(
                             RBuilder::student,
                             lesson,
-                            props.students,
+                            state.students,
                             state.presents[num]
                         ) { onClick(num, it) }
                     else
@@ -84,12 +102,12 @@ class App : RComponent<AppProps, AppState>() {
             route("/students/:number",
                 render = { route_props: RouteResultProps<RouteNumberResult> ->
                     val num = route_props.match.params.number.toIntOrNull() ?: -1
-                    val student = props.students.getOrNull(num)
+                    val student = state.students.getOrNull(num)
                     if (student != null)
                         anyFull(
                             RBuilder::lesson,
                             student,
-                            props.lessons,
+                            state.lessons,
                             state.presents.map {
                                 it[num]
                             }.toTypedArray()
@@ -98,6 +116,21 @@ class App : RComponent<AppProps, AppState>() {
                         p { +"No such student" }
                 }
             )
+        }
+    }
+
+    fun addStudent() = { newStudent: String ->
+        val student = newStudent.split(" ")
+        setState {
+            students += Student(student[0], student[1])
+        }
+    }
+
+    fun addLesson() = { newLesson: String ->
+        setState {
+            lessons += Lesson(newLesson)
+            presents += arrayOf(
+                Array(state.students.size) { false })
         }
     }
 
@@ -111,14 +144,13 @@ class App : RComponent<AppProps, AppState>() {
 }
 
 fun RBuilder.app(
-    lessons: Array<Lesson>,
-    students: Array<Student>
+    //lessons: Array<Lesson>,
 ) =
     child(
         withDisplayName("AppHoc", App::class)
     ) {
-        attrs.lessons = lessons
-        attrs.students = students
+        //attrs.lessons = lessons
+
     }
 
 

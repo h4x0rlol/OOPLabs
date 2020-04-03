@@ -8,7 +8,7 @@ import kotlin.browser.document
 fun main() {
     render(document.getElementById("root")!!) {
         hashRouter {
-            app(lessonsList, studentList)
+            app()
         }
     }
 }
