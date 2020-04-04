@@ -15,45 +15,39 @@ import react.dom.*
 import react.functionalComponent
 import kotlin.browser.document
 
-interface AddStudentProps : RProps {
-    var students: Array<Student>
-    var addFunc: (String) -> Unit
-}
+interface AddStudentProps : RProps {}
 
 val fAddStudent =
     functionalComponent<AddStudentProps> {
-        h2 { +"Type name and surname" }
+        h2 { +"Edit Students List here" }
+        h4 { +"(Type number of element to delete it)" }
         div {
-
-            input(type = InputType.text) {
-                attrs {id = "name"
-                    placeholder = "Name"
+            li {
+                input(type = InputType.text) {
+                    attrs {
+                        id = "name"
+                        placeholder = "Name"
+                    }
+                }
+                input(type = InputType.text) {
+                    attrs {
+                        id = "surname"
+                        placeholder = "Surname"
+                    }
                 }
             }
-            input(type = InputType.text) {
-                attrs {
-                    id = "surname"
-                    placeholder = "Surname"
+            li {
+                input(type = InputType.text) {
+                    attrs {
+                        id = "deleteS"
+                        placeholder = "delete here"
+                    }
                 }
             }
-            button {
-                +"add"
-                attrs.onClickFunction = { _: Event ->
-                    val newName = document.getElementById("name") as HTMLInputElement
-                    val newSurname = document.getElementById("surname") as HTMLInputElement
-                    it.addFunc(newName.value + " " + newSurname.value)
-                }
-            }
-
         }
     }
 
 fun RBuilder.addStudent(
-    students: Array<Student>,
-    addFunc: (String) -> Unit
 ) = child(
     withDisplayName("studentsAdd", fAddStudent)
-) {
-    attrs.students = students
-    attrs.addFunc = addFunc
-}
+) {}

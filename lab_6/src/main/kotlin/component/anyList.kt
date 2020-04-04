@@ -17,7 +17,7 @@ fun <T> fAnyList(name: String, path: String) =
             it.objs.mapIndexed{ index, obj ->
                 li {
                     navLink("$path/$index"){
-                        +obj.toString()
+                       + "${index+1} ${obj.toString()}"
                     }
                 }
             }

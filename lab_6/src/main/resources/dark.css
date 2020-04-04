@@ -14,3 +14,16 @@ a, body {
 .header {
     text-align: center;
 }
+
+.add {
+      border: 1px solid #ad9d80;
+         width: 150px;
+         margin-left:187px;
+         height: 25px;
+         margin-bottom: 10px;
+         background-color: white;
+         border-radius: 4px;
+         &amp;:hover{
+          border-color: darken(#ad9d80, 10%);
+         text-align:center;
+}

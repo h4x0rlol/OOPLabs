@@ -53,9 +53,10 @@ class App : RComponent<AppProps, AppState>() {
                         RBuilder::addLesson,
                         RBuilder::anyList,
                         state.lessons,
-                        "Edited List",
+                        "Edit lessons",
                         "/lessons",
-                        addLesson()
+                        addLessonFunc(),
+                        delFuncL()
                     )
                 }
             )
@@ -66,9 +67,10 @@ class App : RComponent<AppProps, AppState>() {
                         RBuilder::addStudent,
                         RBuilder::anyList,
                         state.students,
-                        "Edited list",
+                        "Edit Students",
                         "/students",
-                        addStudent()
+                        addStudentFunc(),
+                        delFuncS()
                     )
                 }
             )
@@ -81,7 +83,7 @@ class App : RComponent<AppProps, AppState>() {
             route("/students",
                 exact = true,
                 render = {
-                    anyList(state.students, "Students", "/students")
+                    anyList(state.students, "Lessons", "/lessons")
                 }
             )
             route("/lessons/:number",
@@ -119,14 +121,32 @@ class App : RComponent<AppProps, AppState>() {
         }
     }
 
-    fun addStudent() = { newStudent: String ->
+    fun delFuncS() = { element: Int ->
+        val editedStudents = state.students.toMutableList().apply {
+            removeAt(element - 1)
+        }
+        setState {
+            students = editedStudents.toTypedArray()
+        }
+    }
+
+    fun delFuncL() = { element: Int ->
+        val editedLessons = state.lessons.toMutableList().apply {
+            removeAt(element - 1)
+        }
+        setState {
+            lessons = editedLessons.toTypedArray()
+        }
+    }
+
+    fun addStudentFunc() = { newStudent: String ->
         val student = newStudent.split(" ")
         setState {
             students += Student(student[0], student[1])
         }
     }
 
-    fun addLesson() = { newLesson: String ->
+    fun addLessonFunc() = { newLesson: String ->
         setState {
             lessons += Lesson(newLesson)
             presents += arrayOf(

@@ -8,45 +8,37 @@ import kotlinx.html.js.onClickFunction
 import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.events.Event
 import react.*
-import react.dom.button
-import react.dom.div
-import react.dom.h2
-import react.dom.input
+import react.dom.*
 import kotlin.browser.document
 
-interface AddLessonProps : RProps {
-    var lessons: Array<Lesson>
-    var addFunc: (String) -> Unit
-}
+interface AddLessonProps : RProps {}
 
 val fAddLesson =
     functionalComponent<AddLessonProps> {
-        h2 { +"Type new lesson" }
+        h2 { +"Edit Lessons List here" }
+        h4 { +"(Type number of element to delete it)"}
         div {
-            input(type = InputType.text) {
-                attrs {
-                    id = "lesson"
-                    placeholder = "Lesson"
+            li {
+                input(type = InputType.text) {
+                    attrs {
+                        id = "lesson"
+                        placeholder = "add here"
+                    }
                 }
             }
-            button {
-                +"add"
-                attrs.onClickFunction = { _: Event ->
-                    val newValue = document.getElementById("lesson") as HTMLInputElement
-                    it.addFunc(newValue.value)
-                    console.log(newValue.value)
-
+            li{
+                input(type = InputType.text) {
+                    attrs {
+                        id = "deleteL"
+                        placeholder = "delete here"
+                    }
                 }
             }
         }
     }
 
 fun RBuilder.addLesson(
-    lessons: Array<Lesson>,
-    addFunc: (String) -> Unit
+
 ) = child(
     withDisplayName("studentsAdd", fAddLesson)
-) {
-    attrs.lessons = lessons
-    attrs.addFunc = addFunc
-}
+) {}
