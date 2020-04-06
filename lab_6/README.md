@@ -1,8 +1,7 @@
-#### Программа после запуска
-![](https://sun4-16.userapi.com/Jl1p28D4zjsq_KrX2STS5Kn_LAlpurvvMLdcdA/3RPU5sJycgY.jpg)
-#### Переход на studentsEdit и добавление нового студента
-![](https://sun4-15.userapi.com/cMNCxVpOtQWtUzMiRNTk3L4SiBE9jATYU_80vg/u9w_b9Iem28.jpg)
-#### Переход на lessonsEdit и добавление нового предмета
-![](https://sun4-15.userapi.com/Ai50Ap1EblLKhsnOYls-GxlyCv8eWKoqm9Etag/6V8QOTw5IvU.jpg)
-#### Переход на новый предмет и отметка 3-го студента
-![](https://sun4-17.userapi.com/0FUYvPtnb-yKvTtyd7dOEhajZ8E4r3iEhiWGpQ/Rk_0ceFCVdo.jpg)
+#### Переходим на studentsEdit 
+![](https://sun4-12.userapi.com/xHWLggpN70PPYnB-b8ZMi0klwOAglPl9Fs9PHw/NJSQVdEYaZ8.jpg)
+#### Добавляем нового студента и после удаляем студента под номером 2
+![](https://sun4-16.userapi.com/tkAMnTyLp2A-CzepAjTwepmmbSsD-tFnbqOjOQ/1OoYh0kXtSs.jpg)
+![](https://sun4-10.userapi.com/NAfdTy-gfC8fVoBrax5UzYb__NFjUjbj1numDQ/mf5DeM5l9gI.jpg)
+#### Переходим на lessonsEdit и удаляем урок под номером 3 (вводим во второй инпут 3 и нажимаем delete)
+![](https://sun4-12.userapi.com/OzsYIzonNjGJM7jXthtT-vD3OlCtYAK8rfNx4g/4pyaWpUsgxU.jpg)
