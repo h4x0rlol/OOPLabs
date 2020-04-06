@@ -2,10 +2,12 @@ package component
 
 import data.*
 import hoc.withDisplayName
+import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.*
 import react.router.dom.*
+import kotlin.browser.document
 import kotlin.reflect.KClass
 
 interface AppProps : RProps {
@@ -121,34 +123,38 @@ class App : RComponent<AppProps, AppState>() {
         }
     }
 
-    fun delFuncS() = { element: Int ->
+    fun delFuncS() = { _: Event ->
+        val delEL = document.getElementById("deleteS") as HTMLInputElement
         val editedStudents = state.students.toMutableList().apply {
-            removeAt(element - 1)
+            removeAt(delEL.value.toInt() - 1)
         }
         setState {
             students = editedStudents.toTypedArray()
         }
     }
 
-    fun delFuncL() = { element: Int ->
+    fun delFuncL() = { _: Event ->
+        val delEL = document.getElementById("deleteL") as HTMLInputElement
         val editedLessons = state.lessons.toMutableList().apply {
-            removeAt(element - 1)
+            removeAt(delEL.value.toInt() - 1)
         }
         setState {
             lessons = editedLessons.toTypedArray()
         }
     }
 
-    fun addStudentFunc() = { newStudent: String ->
-        val student = newStudent.split(" ")
+    fun addStudentFunc() = { _: Event ->
+        val newName = document.getElementById("name") as HTMLInputElement
+        val newSurname = document.getElementById("surname") as HTMLInputElement
         setState {
-            students += Student(student[0], student[1])
+            students += Student(newName.value, newSurname.value)
         }
     }
 
-    fun addLessonFunc() = { newLesson: String ->
+    fun addLessonFunc() = { _: Event ->
+        val newLesson = document.getElementById("lesson") as HTMLInputElement
         setState {
-            lessons += Lesson(newLesson)
+            lessons += Lesson(newLesson.value)
             presents += arrayOf(
                 Array(state.students.size) { false })
         }
