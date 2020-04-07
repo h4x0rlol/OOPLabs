@@ -85,7 +85,7 @@ class App : RComponent<AppProps, AppState>() {
             route("/students",
                 exact = true,
                 render = {
-                    anyList(state.students, "Lessons", "/lessons")
+                    anyList(state.students, "Students", "/students")
                 }
             )
             route("/lessons/:number",
@@ -128,8 +128,14 @@ class App : RComponent<AppProps, AppState>() {
         val editedStudents = state.students.toMutableList().apply {
             removeAt(delEL.value.toInt() - 1)
         }
+        val editedPresentsS = state.presents.mapIndexed { index, _ ->
+            state.presents[index].toMutableList().apply {
+                removeAt(delEL.value.toInt() - 1)
+            }.toTypedArray()
+        }
         setState {
             students = editedStudents.toTypedArray()
+                presents = editedPresentsS.toTypedArray()
         }
     }
 
@@ -138,8 +144,12 @@ class App : RComponent<AppProps, AppState>() {
         val editedLessons = state.lessons.toMutableList().apply {
             removeAt(delEL.value.toInt() - 1)
         }
+        val editedPresents = state.presents.toMutableList().apply{
+            removeAt(delEL.value.toInt() - 1)
+        }
         setState {
             lessons = editedLessons.toTypedArray()
+            presents = editedPresents.toTypedArray()
         }
     }
 
@@ -148,6 +158,9 @@ class App : RComponent<AppProps, AppState>() {
         val newSurname = document.getElementById("surname") as HTMLInputElement
         setState {
             students += Student(newName.value, newSurname.value)
+            presents.mapIndexed { index, _ ->
+                presents[index] += arrayOf(false)
+            }
         }
     }
 
