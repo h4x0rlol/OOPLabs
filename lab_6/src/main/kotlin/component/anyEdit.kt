@@ -9,6 +9,7 @@ import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.*
+import redux.WrapperAction
 import kotlin.browser.document
 
 interface anyEditProps<S> : RProps {
