@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lab_7-1.0-SNAPSHOT">
+    <output-path>D:\OOPLabs\lab_7\build\libs</output-path>
+    <root id="archive" name="lab_7-1.0-SNAPSHOT.jar">
+      <element id="module-output" name="org.example.lab_7.main" />
+    </root>
+  </artifact>
+</component>
