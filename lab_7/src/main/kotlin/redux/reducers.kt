@@ -31,9 +31,9 @@ fun presentsReducer(state: Presents, action: RAction, id: Int = -1) =
     }
 
 
-fun visibilityReducer(action: RAction) = when (action) {
+fun visibilityReducer(state: VisibilityFilter, action: RAction) = when (action) {
     is SetVisibilityFilter -> action.filter
-    else -> VisibilityFilter.SHOW_ALL
+    else -> state
 }
 
 
@@ -68,7 +68,8 @@ fun rootReducer(state: State, action: RAction) =
             State(
                 lessonsReducer(state.lessons, action, id),
                 studentsReducer(state.students, action),
-                presentsReducer(state.presents, action, id)
+                presentsReducer(state.presents, action, id),
+                visibilityReducer(state.visibilityFilter, action)
             )
         }
         is AddStudent -> {
@@ -76,15 +77,22 @@ fun rootReducer(state: State, action: RAction) =
             State(
                 lessonsReducer(state.lessons, action),
                 studentsReducer(state.students, action, id),
-                presentsReducer(state.presents, action, id)
+                presentsReducer(state.presents, action, id),
+                visibilityReducer(state.visibilityFilter, action)
             )
         }
-        is SetVisibilityFilter -> State(state.lessons, state.students, state.presents, visibilityReducer(action))
+        is SetVisibilityFilter -> State(
+            state.lessons,
+            state.students,
+            state.presents,
+            visibilityReducer(state.visibilityFilter, action)
+        )
         else ->
             State(
                 lessonsReducer(state.lessons, action),
                 studentsReducer(state.students, action),
-                presentsReducer(state.presents, action)
+                presentsReducer(state.presents, action),
+                visibilityReducer(state.visibilityFilter, action)
             )
 
     }
