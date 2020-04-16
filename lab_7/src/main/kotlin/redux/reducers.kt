@@ -81,12 +81,6 @@ fun rootReducer(state: State, action: RAction) =
                 visibilityReducer(state.visibilityFilter, action)
             )
         }
-        is SetVisibilityFilter -> State(
-            state.lessons,
-            state.students,
-            state.presents,
-            visibilityReducer(state.visibilityFilter, action)
-        )
         else ->
             State(
                 lessonsReducer(state.lessons, action),
@@ -94,5 +88,4 @@ fun rootReducer(state: State, action: RAction) =
                 presentsReducer(state.presents, action),
                 visibilityReducer(state.visibilityFilter, action)
             )
-
     }
